@@ -1,0 +1,65 @@
+
+body {
+	font-family: "Roboto";
+    background: #f0f0f0;
+}
+
+h1 {
+	font-size: 42px;
+	font-family: "Raleway";
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #333;
+}
+
+hr {
+	margin: 10px auto;
+    border-color: #1fb5dd;
+    width: 20%;
+}
+
+.container {
+	margin: 60px auto;
+}
+.title {
+    margin-bottom: 50px;
+}
+.verb {
+	margin-bottom: 0px;
+}
+
+.verb-title {
+	display: inline-block;
+	font-weight: 400;
+	color: #666;
+	font-size: 20px;
+}
+
+.verb h3 {
+	display: inline-block;
+	font-weight: 700;
+	color: #333;
+}
+
+.answer-title {
+	margin: 50px 0 0;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.verb-input {
+    display: inline-block;
+    width: 470px;
+    margin-right: 20px;
+}
+
+.verb-btn {
+    display: inline-block;
+}
+
+ul.answer-list{
+	text-decoration: none;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+}
