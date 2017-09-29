@@ -29,13 +29,21 @@ $(document).ready(function() {
     });
 
     function loadQuestion() {
+
         var keys = Object.keys(verbs);
         var randomIndex = Math.floor(Math.random() * (keys.length));
 
-        var indexes = (localStorage.getItem("indexes") || "").split(',');
+        var indexes = localStorage.getItem("indexes");
 
-        if (indexes.length >= keys.length) {
+        if (indexes){
+          indexes = indexes.split(',');
+        } else {
+          indexes = [];          
+        }
+
+        if (indexes.length == keys.length) {
            toastr["info"]("Você chegou ao fim da lista", "Alerta");
+           return;
         }
 
         while(indexes.indexOf(randomIndex.toString()) != -1) {
@@ -94,6 +102,7 @@ $(document).ready(function() {
     function limpar(limpar) {
       var $limpar = $("#limpar");
       localStorage.setItem("result", "");
+      localStorage.setItem("indexes", "");
       //window.location.reload();
       $('ul').html('');
     }
