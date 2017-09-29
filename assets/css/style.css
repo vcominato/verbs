@@ -49,7 +49,7 @@ hr {
 
 .verb-input {
     display: inline-block;
-    width: 470px;
+    width: 350px;
     margin-right: 20px;
 }
 
@@ -63,4 +63,17 @@ ul.answer-right, ul.answer-wrong {
 	list-style: none;
 	margin: 10px 0;
 	padding: 0;
+}
+
+.score {
+	margin-top: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+}
+.score p { 
+	display: inline-block;
+	font-size: 14px;
+
 }

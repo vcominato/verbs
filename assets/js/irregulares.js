@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
     loadCache();
-
     loadQuestion();
-
+    
     console.log($('#verb').text());
 
     $('#enter').click(function(e) {
@@ -41,14 +40,14 @@ $(document).ready(function() {
           indexes = [];          
         }
 
-        if (indexes.length == keys.length) {
-           toastr["info"]("Você chegou ao fim da lista", "Alerta");
-           return;
-        }
+        // if (indexes.length == keys.length) {
+        //    toastr["info"]("Você chegou ao fim da lista", "Alerta");
+        //    return;
+        // }
 
-        while(indexes.indexOf(randomIndex.toString()) != -1) {
-          randomIndex = Math.floor(Math.random() * (keys.length));          
-        }
+        // while(indexes.indexOf(randomIndex.toString()) != -1) {
+        //   randomIndex = Math.floor(Math.random() * (keys.length));          
+        // }
 
         indexes.push(randomIndex);
         localStorage.setItem("indexes", indexes.join(','));
@@ -70,12 +69,14 @@ $(document).ready(function() {
           $('ul.answer-right').append(result);
           saveCache($('ul.answer-right').html());
           loadQuestion();
+         
+
       } else {
           toastr["error"]("Errou", "Alerta");
           var result = "<li>" + $question.text() + " : " + $input.val() + "</li>";
           $('ul.answer-wrong').append(result);
       }
-
+        score();
         $input.val('');
         $input.focus();
     }
@@ -108,51 +109,60 @@ $(document).ready(function() {
       $('ul.answer-right').html('');
       $('ul.answer-wrong').html('');
     }
+
+    function score() {
+      $score = $('#score');
+
+      var totalCertos = $('ul.answer-right li').length;
+      var totalErrados = $('ul.answer-wrong li').length;
+
+      $score.html(totalCertos - (totalErrados *2));
+    }
+
 });
 
 var verbs = {
-  'do' : 'did',
+
+  'bring' : 'brought',
+  'buy' : 'bought',
   'come' : 'came',
- };
-//  'bring' : 'brought',
-// 'buy' : 'bought',
-//   'cut' : 'cut',
-//   'do' : 'did',
-//   'drink' : 'drank',
-//   'drive' : 'drove',
-//   'eat': 'ate',
-//   'fly': 'flew',
-//   'fall': 'fell',
-//   'feel' : 'felt',
-//   'get' : 'got',
-//   'give' : 'gave',
-//   'go' : 'went',
-//   'grow' : 'grew',
-//   'have' : 'had',
-//   'hear' : 'heard',
-//   'keep' : 'kept',
-//   'lose' : 'lost',
-//   'make' : 'made',
-//   'meet' : 'met',
-//   'put' : 'put',
-//   'quit' : 'quit',
-//   'read' : 'read',
-//   'ride' : 'rode',
-//   'run' : 'ran',
-//   'see' : 'saw',
-//   'sell' : 'sold',
-//   'set' : 'set',
-//   'sit' : 'sat',
-//   'sleep' : 'slept',
-//   'speak' : 'spoke',
-//   'spend' : 'spent',
-//   'take' : 'took',
-//   'teach' : 'taught',
-//   'tell' : 'told',
-//   'think' : 'thought',
-//   'wear' : 'wore',
-//   'write' : 'wrote'
-// }
+  'cut' : 'cut',
+  'do' : 'did',
+  'drink' : 'drank',
+  'drive' : 'drove',
+  'eat': 'ate',
+  'fly': 'flew',
+  'fall': 'fell',
+  'feel' : 'felt',
+  'get' : 'got',
+  'give' : 'gave',
+  'go' : 'went',
+  'grow' : 'grew',
+  'have' : 'had',
+  'hear' : 'heard',
+  'keep' : 'kept',
+  'lose' : 'lost',
+  'make' : 'made',
+  'meet' : 'met',
+  'put' : 'put',
+  'quit' : 'quit',
+  'read' : 'read',
+  'ride' : 'rode',
+  'run' : 'ran',
+  'see' : 'saw',
+  'sell' : 'sold',
+  'set' : 'set',
+  'sit' : 'sat',
+  'sleep' : 'slept',
+  'speak' : 'spoke',
+  'spend' : 'spent',
+  'take' : 'took',
+  'teach' : 'taught',
+  'tell' : 'told',
+  'think' : 'thought',
+  'wear' : 'wore',
+  'write' : 'wrote'
+}
 
 // var verbs = {
 //     'arise': 'arose',
