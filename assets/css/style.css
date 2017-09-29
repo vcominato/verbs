@@ -57,7 +57,8 @@ hr {
     display: inline-block;
 }
 
-ul.answer-list{
+ul.answer-right, ul.answer-wrong {
+	font-weight: normal;
 	text-decoration: none;
 	list-style: none;
 	margin: 10px 0;

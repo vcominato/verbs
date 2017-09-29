@@ -67,11 +67,13 @@ $(document).ready(function() {
       if ($input.val() == verbs[$question.text()]) {
           toastr["success"]("Você acertou", "Alerta");
           var result = "<li>" + $question.text() + " : " + $input.val() + "</li>";
-          $('ul').append(result);
-          saveCache($('ul').html());
+          $('ul.answer-right').append(result);
+          saveCache($('ul.answer-right').html());
           loadQuestion();
       } else {
           toastr["error"]("Errou", "Alerta");
+          var result = "<li>" + $question.text() + " : " + $input.val() + "</li>";
+          $('ul.answer-wrong').append(result);
       }
 
         $input.val('');
@@ -82,7 +84,7 @@ $(document).ready(function() {
 
       var result = localStorage.getItem("result");
       if (result) {
-        $('ul').append(result);  
+        $('ul.answer-right').append(result);  
       }
     }
 
@@ -103,8 +105,8 @@ $(document).ready(function() {
       var $limpar = $("#limpar");
       localStorage.setItem("result", "");
       localStorage.setItem("indexes", "");
-      //window.location.reload();
-      $('ul').html('');
+      $('ul.answer-right').html('');
+      $('ul.answer-wrong').html('');
     }
 });
 
