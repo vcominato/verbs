@@ -40,14 +40,16 @@ $(document).ready(function() {
           indexes = [];          
         }
 
-        // if (indexes.length == keys.length) {
-        //    toastr["info"]("Você chegou ao fim da lista", "Alerta");
-        //    return;
-        // }
+        //startnao deixa o random repetir os verbos
+        if (indexes.length == keys.length) {
+           toastr["info"]("Você chegou ao fim da lista", "Alerta");
+           return;
+        }
 
-        // while(indexes.indexOf(randomIndex.toString()) != -1) {
-        //   randomIndex = Math.floor(Math.random() * (keys.length));          
-        // }
+        while(indexes.indexOf(randomIndex.toString()) != -1) {
+          randomIndex = Math.floor(Math.random() * (keys.length));          
+        }
+        //end;
 
         indexes.push(randomIndex);
         localStorage.setItem("indexes", indexes.join(','));
@@ -76,6 +78,7 @@ $(document).ready(function() {
           var result = "<li>" + $question.text() + " : " + $input.val() + "</li>";
           $('ul.answer-wrong').append(result);
       }
+
         score();
         $input.val('');
         $input.focus();
@@ -118,8 +121,9 @@ $(document).ready(function() {
 
       $score.html(totalCertos - (totalErrados *2));
     }
-
 });
+
+
 
 var verbs = {
 
