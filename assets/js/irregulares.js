@@ -2,7 +2,8 @@ $(document).ready(function() {
 
     loadCache();
     loadQuestion();
-    
+    lowerCase(verbs);
+
     console.log($('#verb').text());
 
     $('#enter').click(function(e) {
@@ -40,7 +41,6 @@ $(document).ready(function() {
           indexes = [];          
         }
 
-        //startnao deixa o random repetir os verbos
         if (indexes.length == keys.length) {
            toastr["info"]("Você chegou ao fim da lista", "Alerta");
            return;
@@ -49,7 +49,6 @@ $(document).ready(function() {
         while(indexes.indexOf(randomIndex.toString()) != -1) {
           randomIndex = Math.floor(Math.random() * (keys.length));          
         }
-        //end;
 
         indexes.push(randomIndex);
         localStorage.setItem("indexes", indexes.join(','));
@@ -72,13 +71,11 @@ $(document).ready(function() {
           saveCache($('ul.answer-right').html());
           loadQuestion();
          
-
       } else {
           toastr["error"]("Errou", "Alerta");
           var result = "<li>" + $question.text() + " : " + $input.val() + "</li>";
           $('ul.answer-wrong').append(result);
       }
-
         score();
         $input.val('');
         $input.focus();
@@ -115,15 +112,24 @@ $(document).ready(function() {
 
     function score() {
       $score = $('#score');
-
       var totalCertos = $('ul.answer-right li').length;
       var totalErrados = $('ul.answer-wrong li').length;
 
       $score.html(totalCertos - (totalErrados *2));
     }
+
+    function lowerCase() {
+      
+      $("input").on('input', function(evt) {
+        var input = $(this);
+        var start = input[0].selectionStart;
+        $(this).val(function (_, val) {
+          return val.toLowerCase();
+        });
+        //input[0].selectionStart = input[0].selectionEnd = start;
+      });
+    }
 });
-
-
 
 var verbs = {
 
@@ -167,6 +173,7 @@ var verbs = {
   'wear' : 'wore',
   'write' : 'wrote'
 }
+
 
 // var verbs = {
 //     'arise': 'arose',
