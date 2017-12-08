@@ -1,8 +1,12 @@
+
+
 $(document).ready(function() {
 
+    verbs = verbsPast;
     loadCache();
     loadQuestion();
     lowerCase(verbs);
+    
 
     console.log($('#verb').text());
 
@@ -21,6 +25,13 @@ $(document).ready(function() {
         limpar();
     });
 
+    $('#trocarVerbos').click(function(e) {
+        e.preventDefault();
+        trocarVerbos();
+        limpar();
+        loadQuestion();
+    });
+
     //enter
     $('input[type="text"').keypress("click", function(event) {
       if(event.which === 13) {
@@ -31,6 +42,7 @@ $(document).ready(function() {
     function loadQuestion() {
 
         var keys = Object.keys(verbs);
+        console.log(verbs)
         var randomIndex = Math.floor(Math.random() * (keys.length));
 
         var indexes = localStorage.getItem("indexes");
@@ -110,6 +122,12 @@ $(document).ready(function() {
       $('ul.answer-wrong').html('');
     }
 
+    function trocarVerbos() {
+      var $ddlVerbs = $("#ddlVerbs");
+      var name = $ddlVerbs.val();
+      this['verbs'] = this[name];
+    }
+
     function score() {
       $score = $('#score');
       var totalCertos = $('ul.answer-right li').length;
@@ -131,8 +149,9 @@ $(document).ready(function() {
     }
 });
 
-var verbs = {
+verbs = {};
 
+verbsPast = {
   'bring' : 'brought',
   'buy' : 'bought',
   'come' : 'came',
@@ -174,166 +193,47 @@ var verbs = {
   'write' : 'wrote'
 }
 
+var verbsParticiple = {
 
-// var verbs = {
-//     'arise': 'arose',
-//     'awake': 'awoke',
-//     'be': 'was / were',
-//     'bear': 'bore',
-//     'beat': 'beat',
-//     'become': 'became',
-//     'begin': 'began',
-//     'bend': 'bent',
-//     'bet': 'bet',
-//     'bid': 'bade',
-//     'bind': 'bound',
-//     'bite': 'bit',
-//     'bleed': 'bled',
-//     'blow': 'blew',
-//     'break': 'broke',
-//     'breed': 'bred',
-//     'bring': 'brought',
-//     'build': 'built',
-//     'burn': 'burnt',
-//     'burst': 'burst',
-//     'buy': 'bought',
-//     'cast': 'cast',
-//     'catch': 'caught',
-//     'choose': 'chose',
-//     'cling': 'clung',
-//     'clothe': 'clothed',
-//     'come': 'came',
-//     'cost': 'cost',
-//     'creep': 'crept',
-//     'crow': 'crew',
-//     'cut': 'cut',
-//     'deal': 'dealt',
-//     'dig': 'dug',
-//     'do': 'did',
-//     'draw': 'drew',
-//     'drink': 'drank',
-//     'drive': 'drove',
-//     'dwell': 'dwelt',
-//     'eat': 'ate',
-//     'fall': 'fell',
-//     'feed': 'fed',
-//     'feel': 'felt',
-//     'fight': 'fought',
-//     'find': 'found',
-//     'flee': 'fled',
-//     'fling': 'flung',
-//     'fly': 'flew',
-//     'forbid': 'forbade',
-//     'forget': 'forgot',
-//     'forgive': 'forgave',
-//     'forsake': 'forsook',
-//     'freeze': 'froze',
-//     'get': 'got',
-//     'give': 'gave',
-//     'go': 'went',
-//     'grow': 'grew',
-//     'hang': 'hung',
-//     'have': 'had',
-//     'hear': 'heard',
-//     'heave': 'hove',
-//     'hew': 'hewed',
-//     'hide': 'hid',
-//     'hit': 'hit',
-//     'hold': 'held',
-//     'hurt': 'hurt',
-//     'keep': 'kept',
-//     'kneel': 'knelt',
-//     'knit': 'knit',
-//     'know': 'knew',
-//     'lay': 'laid',
-//     'lead': 'led',
-//     'leap': 'leapt',
-//     'learn': 'learnt',
-//     'leave': 'left',
-//     'lend': 'lent',
-//     'let': 'let',
-//     'lie': 'lay',
-//     'light': 'lit',
-//     'lose': 'lost',
-//     'make': 'made',
-//     'mean': 'meant',
-//     'meet': 'met',
-//     'partake': 'partook',
-//     'pay': 'paid',
-//     'put': 'put',
-//     'quit': 'quit',
-//     'read': 'read',
-//     'ride': 'rode',
-//     'ring': 'rang',
-//     'rise': 'rose',
-//     'run': 'ran',
-//     'saw': 'sawed',
-//     'say': 'said',
-//     'see': 'saw',
-//     'seek': 'sought',
-//     'sell': 'sold',
-//     'send': 'sent',
-//     'set': 'set',
-//     'sew': 'sewed',
-//     'shake': 'shook',
-//     'shed': 'shed',
-//     'shine': 'shone',
-//     'shoot': 'shot',
-//     'show': 'showed',
-//     'shred': 'shred',
-//     'shrink': 'shrank',
-//     'shut': 'shut',
-//     'sing': 'sang',
-//     'sink': 'sank',
-//     'sit': 'sat',
-//     'slay': 'slew',
-//     'sleep': 'slept',
-//     'slide': 'slid',
-//     'sling': 'slung',
-//     'smell': 'smelt',
-//     'smite': 'smote',
-//     'sow': 'sowed',
-//     'speak': 'spoke',
-//     'spell': 'spelt',
-//     'spend': 'spent',
-//     'spill': 'spilt',
-//     'spin': 'spun',
-//     'spit': 'spat',
-//     'spoil': 'spoilt',
-//     'spread': 'spread',
-//     'spring': 'sprang',
-//     'stand': 'stood',
-//     'steal': 'stole',
-//     'stick': 'stuck',
-//     'sting': 'stung',
-//     'stink': 'stank',
-//     'strew': 'strewed',
-//     'stride': 'strode',
-//     'strike': 'struck',
-//     'string': 'strung',
-//     'strive': 'strove',
-//     'swear': 'swore',
-//     'sweat': 'sweat',
-//     'sweep': 'swept',
-//     'swell': 'swelled',
-//     'swim': 'swam',
-//     'swing': 'swung',
-//     'take': 'took',
-//     'teach': 'taught',
-//     'tear': 'tore',
-//     'tell': 'told',
-//     'think': 'thought',
-//     'thrive': 'throve',
-//     'throw': 'threw',
-//     'thrust': 'thrust',
-//     'tread': 'trod',
-//     'understand': 'understood',
-//     'wake': 'woke',
-//     'wear': 'wore',
-//     'weave': 'wove',
-//     'weep': 'wept',
-//     'wet': 'wet',
-//     'win': 'won',
-//     'wind': 'wound',
-//     'wring': 'wrung',
-// };
+  'bring' : 'brought',
+  'buy' : 'bought',
+  'come' : 'come',
+  'cut' : 'cut',
+  'do' : 'done',
+  'drink' : 'drunk',
+  'drive' : 'driven',
+  'eat': 'eaten',
+  'fly': 'flown',
+  'fall': 'fallen',
+  'feel' : 'felt',
+  'get' : 'gotten',
+  'give' : 'given',
+  'go' : 'gone',
+  'grow' : 'grown',
+  'have' : 'had',
+  'hear' : 'heard',
+  'keep' : 'kept',
+  'lose' : 'lost',
+  'make' : 'made',
+  'meet' : 'met',
+  'put' : 'put',
+  'quit' : 'quit',
+  'read' : 'read',
+  'ride' : 'ridden',
+  'run' : 'run',
+  'see' : 'seen',
+  'sell' : 'sold',
+  'set' : 'set',
+  'sit' : 'sat',
+  'sleep' : 'slept',
+  'speak' : 'spoken',
+  'spend' : 'spent',
+  'take' : 'taken',
+  'teach' : 'taught',
+  'tell' : 'told',
+  'think' : 'thought',
+  'wear' : 'worn',
+  'write' : 'written'
+
+}
+

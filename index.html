@@ -51,13 +51,21 @@
 					<div class="verb-btn">
 						<div id="enter" class="btn btn-info"> Submit</div>
 						<div id="verResposta" class="btn btn-warning"> Ver resposta</div>
-						<div id="limpar" class="btn btn-danger"> Limpar</div>
+						<button id="limpar" class="btn btn-danger"> Limpar</button>
 						<div class="score">
 							<p><strong>Score:</strong></p>
 							<p id="score">0</p>
 						</div>
 					</div>
 				</div>
+
+				<form>
+					<select id="ddlVerbs" class="form-control form-control-inline">
+						<option value="verbsPast">Past</option>
+						<option value="verbsParticiple">Participle</option>
+					</select>
+					<button id="trocarVerbos" class="btn btn-warning">OK</button>
+				</form>
 
 
 				<div class="answer-title col-sm-6"> Respostas certas 
